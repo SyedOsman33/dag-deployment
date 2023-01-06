@@ -4,7 +4,7 @@ from io import BytesIO
 from airflow import models
 from airflow.operators.bash import BashOperator
 from airflow.operators.python import PythonOperator
-from google.cloud import storage
+#from google.cloud import storage
 import pandas as pd
 from sqlalchemy import create_engine
 import sqlite3
@@ -75,10 +75,11 @@ with models.DAG(
         # *NOTE*: Replace the client created below with the client required for your application.
         # Note that the credentials are not specified when constructing the client.
         # Hence, the client library will look for credentials using ADC.
-        storage_client = storage.Client(project=project_id)
-        bucket = storage_client.bucket("airflow-project-data-csv")
-        blob = bucket.blob("annual-enterprise-survey-2021-financial-year-provisional-size-bands-csv.csv")
-        blob.download_to_filename("downloaded-csv.csv")
+        #storage_client = storage.Client(project=project_id)
+        #bucket = storage_client.bucket("airflow-project-data-csv")
+        #blob = bucket.blob("annual-enterprise-survey-2021-financial-year-provisional-size-bands-csv.csv")
+        #blob.download_to_filename("downloaded-csv.csv")
+        pass
 
 
     db_task = PythonOperator(
@@ -98,13 +99,14 @@ with models.DAG(
 
 
 def test_gcs_hook():
-    from airflow.providers.google.cloud.hooks.gcs import GCSHook
-    hook_obj = GCSHook(gcp_conn_id='google_cloud_default', delegate_to=None, impersonation_chain=None)
-    file_handle = hook_obj.download_as_byte_array(bucket_name='airflow-project-data-csv',
-                                                  object_name='annual-enterprise-survey-2021-financial-'
-                                                              'year-provisional-size-bands-csv (1).csv')
-    df = pd.read_csv(BytesIO(file_handle))
-    print(df.head())
+    #from airflow.providers.google.cloud.hooks.gcs import GCSHook
+    #hook_obj = GCSHook(gcp_conn_id='google_cloud_default', delegate_to=None, impersonation_chain=None)
+    #file_handle = hook_obj.download_as_byte_array(bucket_name='airflow-project-data-csv',
+    #                                              object_name='annual-enterprise-survey-2021-financial-'
+    #                                                          'year-provisional-size-bands-csv (1).csv')
+    #df = pd.read_csv(BytesIO(file_handle))
+    #print(df.head())
+    pass
 
 
 if __name__ == "__main__":
