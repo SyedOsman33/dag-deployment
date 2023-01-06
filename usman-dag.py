@@ -39,7 +39,7 @@ def transform_csv_file():
     df = df.drop(df.index[50:])
     print(df)
     # db_conn = create_engine('sqlite:///dags/data-dump.db', connect_args={'timeout': 300})
-    db_conn_cloud_sql = create_engine("postgresql+psycopg2://usman:123456789@host.docker.internal:5455/usman-db")
+    db_conn_cloud_sql = create_engine("postgresql+psycopg2://usman:123456789@130.211.206.126:5455/usman-db")
     df.to_sql('trade_data', db_conn_cloud_sql, if_exists='replace', index=False)
     print('records added:', df.count())
 
