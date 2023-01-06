@@ -34,7 +34,7 @@ def create_connection():
 
 
 def transform_csv_file():
-    df = pd.read_csv('updated.csv')
+    df = pd.read_csv('/root/airlfow/dags/updated.csv')
     df = df.drop(['time_ref', 'code', 'status'], axis=1)
     df = df.drop(df.index[50:])
     print(df)
