@@ -36,7 +36,7 @@ def create_connection():
 def transform_csv_file():
     df = pd.read_csv('/root/airflow/dags/updated.csv')
     df = df.drop(['time_ref', 'code', 'status'], axis=1)
-    df = df.drop(df.index[50:])
+    df = df.drop(df.index[500:])
     print(df)
     # db_conn = create_engine('sqlite:///dags/data-dump.db', connect_args={'timeout': 300})
     db_conn_cloud_sql = create_engine("postgresql+psycopg2://usman:123456789@130.211.206.126:5432/usman-db")
